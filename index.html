@@ -23,14 +23,15 @@
 
         <div class="filters">
             <label for="orderPrice">Ordenar por Preço: </label>
-            <input type="radio" name="orderFilter" id="ascendingOrder"> Crescente
-            <input type="radio" name="orderFilter" id="descendingOrder"> Decrescente
+            <button class="order-btn" id="ascendingOrder" data-order="ascending">Crescente</button>
+            <button class="order-btn" id="descendingOrder" data-order="descending">Decrescente</button>
         </div>
 
         <div class="filters">
             <label for="availability">Disponibilidade: </label>
+            <input type="radio" name="availableFilter" id="all"> Todos
             <input type="radio" name="availableFilter" id="available"> Disponível
-            <input type="radio" name="availableFilter" id="unavailable"> Indisponível
+            <input type="radio" name="availableFilter" id="unavailable"> Indisponível            
         </div>
         
         <button type="button" id="buttonFilter">Filtrar</button>
