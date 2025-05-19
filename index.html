@@ -4,47 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produtos</title>
+    <link rel="stylesheet" href="src/assets/css/style.css">
     <script defer type="module" src="src/js/app.js"></script>
 </head>
 <body>
-    <h1>Catálogo dos Produtos</h1>
-    <form id="productsFilter">
-        <div class="filters">
-            <label for="category">Categoria: </label>
-            <select id="category">
-                <option value="">Todas Categorias</option>
-                <option value="Clothing">Roupas</option>
-                <option value="Footwear">Calçados</option>
-                <option value="Accessories">Acessórios</option>
-                <option value="Electronics">Eletrônicos</option>
-                <option value="Furniture">Móveis</option>
-                <option value="Toys & Games">Brinquedos e Jogos</option>
-            </select>
-        </div>
+    <div class="container">
+        <h1>Catálogo dos Produtos</h1>
+        <form id="productsFilter">
+            <div class="filters">
+                <label for="category">Categoria: </label>
+                <select id="category">
+                    <option value="">Todas Categorias</option>
+                    <option value="Clothing">Roupas</option>
+                    <option value="Footwear">Calçados</option>
+                    <option value="Accessories">Acessórios</option>
+                    <option value="Electronics">Eletrônicos</option>
+                    <option value="Furniture">Móveis</option>
+                    <option value="Toys & Games">Brinquedos e Jogos</option>
+                </select>
+            </div>
 
-        <div class="filters">
-            <label for="orderPrice">Ordenar por Preço: </label>
-            <button class="order-btn" id="ascendingOrder" data-order="ascending">Crescente</button>
-            <button class="order-btn" id="descendingOrder" data-order="descending">Decrescente</button>
-        </div>
+            <div class="filters">
+                <label for="orderPrice">Ordenar por Preço: </label>
+                <button class="order-btn" id="ascendingOrder" data-order="ascending">Crescente</button>
+                <button class="order-btn" id="descendingOrder" data-order="descending">Decrescente</button>
+            </div>
 
-        <div class="filters">
-            <label for="availability">Disponibilidade: </label>
-            <input type="radio" name="availableFilter" id="all"> Todos
-            <input type="radio" name="availableFilter" id="available"> Disponível
-            <input type="radio" name="availableFilter" id="unavailable"> Indisponível            
-        </div>
-        
-        <button type="button" id="buttonFilter">Filtrar</button>
-    </form>
-    <button type="button">Listar Todos os Produtos</button>
-    <div id="productContainarDisplay">
-        <div class="product">
-            <h2>Nome</h2>
-            <img src="" alt="Imagem">
-            <p>Preço</p>
-            <h5>Categorias</h5>
-            <h4>Disponibilidade</h4>
+            <div class="filters">
+                <label for="availability">Disponibilidade: </label>
+                <input type="radio" name="availableFilter" id="all" checked> Todos
+                <input type="radio" name="availableFilter" id="available"> Disponível
+                <input type="radio" name="availableFilter" id="unavailable"> Indisponível            
+            </div>
+            
+            <button type="button" id="buttonFilter">Filtrar</button>
+        </form>
+        <button type="button" id="listAllProducts">Listar Todos os Produtos</button>
+        <div id="productContainarDisplay">
+            <div class="product">
+                <h2>Nome</h2>
+                <img src="" alt="Imagem">
+                <p>Preço</p>
+                <h5>Categorias</h5>
+                <h4>Disponibilidade</h4>
+            </div>
         </div>
     </div>
     
