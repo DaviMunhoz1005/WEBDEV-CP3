@@ -10,7 +10,7 @@ const clearFilter = document.getElementById('clearFilters');
 
 allProducts.addEventListener('click', () => {
     categorySelect.value = "";
-    document.querySelector('input[name="availableFilter"][value="all"]').checked = true;
+    document.querySelectorAll('input[name="availableFilter"]').forEach(checkboxAvailability => checkboxAvailability.checked = true);
     displayProducts();
 });
 
@@ -18,7 +18,9 @@ clearFilter.addEventListener('click', () => location.reload());
 
 buttonFilter.addEventListener('click', () => {
     const selectedCategory = categorySelect.value;
-    const selectedAvailability = document.querySelector('input[name="availableFilter"]:checked').value;
+    const selectedAvailability = Array.from(
+        document.querySelectorAll('input[name="availableFilter"]:checked')
+    ).map(input => input.value);
     displayProducts(selectedCategory, selectedAvailability);
 });
 
@@ -36,7 +38,7 @@ descendingOrderPrice.addEventListener('click', (event) => {
     buttonFilter.click();
 });
 
-function displayProducts(category = "", availability = "all") {
+function displayProducts(category = "", availability = ["available", "unavailable"]) {
     let allProductsFilteredInHtml = products
         .filter((product) => {
             return checkFilters(category, availability, product);
@@ -46,16 +48,17 @@ function displayProducts(category = "", availability = "all") {
     divProducts.innerHTML = allProductsFilteredInHtml || "<p>Nenhum produto encontrado com esses filtros.</p>";
 }
 
-function checkFilters(category, availability, product) {
+function checkFilters(category, availabilityArray, product) {
     const matchesCategory = !category || product.categoria === category;
-    const matchesAvailability = checkAvailability(availability, product.disponibilidade);
+    const matchesAvailability = checkAvailability(availabilityArray, product.disponibilidade);
     return matchesCategory && matchesAvailability;
 }
 
-function checkAvailability(availability, productAvailability) {
-    return availability === "all" || 
-    (availability === "available" && productAvailability) ||
-    (availability === "unavailable" && !productAvailability);
+function checkAvailability(availabilityArray, productAvailability) {
+    return (
+        (productAvailability && availabilityArray.includes("available")) ||
+        (!productAvailability && availabilityArray.includes("unavailable"))
+    );
 }
 
 function buildHtmlCardProducts(product) {
