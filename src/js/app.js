@@ -6,10 +6,12 @@ const ascendingOrderPrice = document.getElementById('ascendingOrder');
 const descendingOrderPrice = document.getElementById('descendingOrder');
 const buttonFilter = document.getElementById('buttonFilter');
 const allProducts = document.getElementById('listAllProducts');
+const clearFilter = document.getElementById('clearFilters');
 
 displayProducts();
 
 allProducts.addEventListener('click', () => displayProducts());
+clearFilter.addEventListener('click', () => location.reload());
 
 buttonFilter.addEventListener('click', () => {
     const selectedCategory = categorySelect.value;
