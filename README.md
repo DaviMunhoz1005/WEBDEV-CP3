@@ -3,6 +3,8 @@
 Checkpoint 3 para a disciplina de Web Development FIAP
 
 ##### Para Acessar o site clique [aqui](https://davimunhoz1005.github.io/WEBDEV-CP3/).
+##### Para Acessar o diagrama no Lucidchart clique [aqui](https://lucid.app/lucidchart/1c3f4661-eac1-4652-9272-ffb4526c9538/edit?invitationId=inv_4b44a211-a231-44ac-a8b8-f84ddbd97a9a).
+
 
 ## Sobre o Projeto
 
