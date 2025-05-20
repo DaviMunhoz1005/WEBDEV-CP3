@@ -8,9 +8,11 @@ const buttonFilter = document.getElementById('buttonFilter');
 const allProducts = document.getElementById('listAllProducts');
 const clearFilter = document.getElementById('clearFilters');
 
-displayProducts();
-
-allProducts.addEventListener('click', () => displayProducts());
+allProducts.addEventListener('click', () => {
+    categorySelect.value = "";
+    document.querySelector('input[name="availableFilter"][value="all"]').checked = true;
+    displayProducts();
+});
 
 clearFilter.addEventListener('click', () => location.reload());
 
@@ -35,15 +37,19 @@ descendingOrderPrice.addEventListener('click', (event) => {
 });
 
 function displayProducts(category = "", availability = "all") {
-    let allProductsFilteredInHtml = '';
-    products.forEach(product => {
-        const matchesCategory = !category || product.categoria === category;
-        const matchesAvailability = checkAvailability(availability, product.disponibilidade);
-        if (matchesCategory && matchesAvailability) {
-            allProductsFilteredInHtml += buildHtmlCardProducts(product);
-        }
-    });
+    let allProductsFilteredInHtml = products
+        .filter((product) => {
+            return checkFilters(category, availability, product);
+        })
+        .map(buildHtmlCardProducts)
+        .join("");
     divProducts.innerHTML = allProductsFilteredInHtml || "<p>Nenhum produto encontrado com esses filtros.</p>";
+}
+
+function checkFilters(category, availability, product) {
+    const matchesCategory = !category || product.categoria === category;
+    const matchesAvailability = checkAvailability(availability, product.disponibilidade);
+    return matchesCategory && matchesAvailability;
 }
 
 function checkAvailability(availability, productAvailability) {
