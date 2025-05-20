@@ -11,6 +11,7 @@ const clearFilter = document.getElementById('clearFilters');
 displayProducts();
 
 allProducts.addEventListener('click', () => displayProducts());
+
 clearFilter.addEventListener('click', () => location.reload());
 
 buttonFilter.addEventListener('click', () => {
@@ -34,23 +35,30 @@ descendingOrderPrice.addEventListener('click', (event) => {
 });
 
 function displayProducts(category = "", availability = "all") {
-    let html = '';
+    let allProductsFilteredInHtml = '';
     products.forEach(product => {
         const matchesCategory = !category || product.categoria === category;
-        const matchesAvailability =
-            availability === "all" ||
-            (availability === "available" && product.disponibilidade) ||
-            (availability === "unavailable" && !product.disponibilidade);
+        const matchesAvailability = checkAvailability(availability, product.disponibilidade);
         if (matchesCategory && matchesAvailability) {
-            html += `
-            <div class="product">
-                <h2>${product.nome}</h2>
-                <img src="${product.imagem}" alt="Imagem">
-                <p>R$${product.preco.toFixed(2)}</p>
-                <h5>${product.categoria}</h5>
-                <h4>${product.disponibilidade ? "Disponível" : "Indisponível"}</h4>
-            </div>`;
+            allProductsFilteredInHtml += buildHtmlCardProducts(product);
         }
     });
-    divProducts.innerHTML = html || "<p>Nenhum produto encontrado com esses filtros.</p>";
+    divProducts.innerHTML = allProductsFilteredInHtml || "<p>Nenhum produto encontrado com esses filtros.</p>";
+}
+
+function checkAvailability(availability, productAvailability) {
+    return availability === "all" || 
+    (availability === "available" && productAvailability) ||
+    (availability === "unavailable" && !productAvailability);
+}
+
+function buildHtmlCardProducts(product) {
+    return `
+    <div class="product">
+        <h2>${product.nome}</h2>
+        <img src="${product.imagem}" alt="Imagem">
+        <p>R$${product.preco.toFixed(2)}</p>
+        <h5>${product.categoria}</h5>
+        <h4>${product.disponibilidade ? "Disponível" : "Indisponível"}</h4>
+    </div>`;
 }
