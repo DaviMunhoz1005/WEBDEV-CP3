@@ -2,7 +2,7 @@
 
 Checkpoint 3 para a disciplina de Web Development FIAP
 
-##### Para Acessar o site clique [aqui]().
+##### Para Acessar o site clique [aqui](https://davimunhoz1005.github.io/WEBDEV-CP3/).
 
 ## Sobre o Projeto
 
