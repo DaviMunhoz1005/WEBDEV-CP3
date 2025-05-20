@@ -39,13 +39,25 @@ descendingOrderPrice.addEventListener('click', (event) => {
 });
 
 function displayProducts(category = "", availability = ["available", "unavailable"]) {
-    let allProductsFilteredInHtml = products
-        .filter((product) => {
-            return checkFilters(category, availability, product);
-        })
-        .map(buildHtmlCardProducts)
-        .join("");
-    divProducts.innerHTML = allProductsFilteredInHtml || "<p>Nenhum produto encontrado com esses filtros.</p>";
+    const categoryDivs = document.querySelectorAll('#productContainerDisplay > div');
+    categoryDivs.forEach(div => {
+        div.style.display = "none";
+        div.innerHTML = `<h2>${div.id}</h2>`;
+    });
+    const filteredProducts = products.filter(product =>
+        checkFilters(category, availability, product)
+    );
+    if (filteredProducts.length === 0) {
+        divProducts.innerHTML = "<p>Nenhum produto encontrado com esses filtros.</p>";
+        return;
+    }
+    filteredProducts.forEach(product => {
+        const categoryDiv = document.getElementById(product.categoria);
+        if (categoryDiv) {
+            categoryDiv.style.display = "flex";
+            categoryDiv.innerHTML += buildHtmlCardProducts(product);
+        }
+    });
 }
 
 function checkFilters(category, availabilityArray, product) {
@@ -64,7 +76,7 @@ function checkAvailability(availabilityArray, productAvailability) {
 function buildHtmlCardProducts(product) {
     return `
     <div class="product">
-        <h2>${product.nome}</h2>
+        <h3>${product.nome}</h3>
         <img src="${product.imagem}" alt="Imagem">
         <p>R$${product.preco.toFixed(2)}</p>
         <h5>${product.categoria}</h5>
