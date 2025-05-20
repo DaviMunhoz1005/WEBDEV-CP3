@@ -77,7 +77,6 @@ function buildHtmlCardProducts(product) {
     return `
     <div class="product">
         <h3>${product.nome}</h3>
-        <img src="${product.imagem}" alt="Imagem">
         <p>R$${product.preco.toFixed(2)}</p>
         <h5>${product.categoria}</h5>
         <h4>${product.disponibilidade ? "Disponível" : "Indisponível"}</h4>
