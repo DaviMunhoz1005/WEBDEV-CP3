@@ -133,12 +133,6 @@ button:hover {
     transition: transform 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
 }
 
-.product:hover {
-    transform: scale(1.06);
-    border: 1.5px solid var(--color-primary); 
-    box-shadow: 0 6px 20px rgba(127, 29, 255, 0.3);
-}
-
 .product h3 {
     font-size: 18px;
     margin-bottom: 10px;
