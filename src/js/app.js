@@ -58,6 +58,7 @@ function displayProducts(category = "", availability = ["available", "unavailabl
             categoryDiv.innerHTML += buildHtmlCardProducts(product);
         }
     });
+    addHoverEffectToProducts();
 }
 
 function checkFilters(category, availabilityArray, product) {
@@ -81,4 +82,24 @@ function buildHtmlCardProducts(product) {
         <h5>${product.categoria}</h5>
         <h4>${product.disponibilidade ? "Disponível" : "Indisponível"}</h4>
     </div>`;
+}
+
+function addHoverEffectToProducts() {
+    const cards = document.querySelectorAll('.product');
+
+    cards.forEach(card => {
+        card.style.transition = 'transform 0.3s ease, border 0.3s ease, box-shadow 0.3s ease';
+
+        card.addEventListener('mouseover', () => {
+            card.style.transform = 'scale(1.06)';
+            card.style.border = '1.5px solid var(--color-primary)';
+            card.style.boxShadow = '0 6px 20px rgba(127, 29, 255, 0.3)';
+        });
+
+        card.addEventListener('mouseout', () => {
+            card.style.transform = 'scale(1)';
+            card.style.border = '1px solid rgba(127, 29, 255, 0.2)';
+            card.style.boxShadow = '0 4px 12px rgba(127, 29, 255, 0.15)';
+        });
+    });
 }
