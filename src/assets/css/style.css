@@ -130,7 +130,11 @@ button:hover {
     flex: 0 0 100%;
     font-size: 1.4rem;
     margin-bottom: 20px;
-    color: var(--color-primary);
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-highlight));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradientAnimation 3s infinite alternate;
 }
 
 .product {
