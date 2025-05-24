@@ -11,6 +11,8 @@
     --color-surface: #1E1E22;
     --color-primary: #7F1DFF;
     --color-primary-dark: #4C1D95;
+    --color-secondary: #b12eee;
+    --color-highlight: #2c0050;
     --color-text: #D1D5DB;
 }
 
@@ -33,8 +35,20 @@ body {
 h1 {
     text-align: center;
     font-family: 'Poppins', sans-serif;
-    color: var(--color-primary);
-    margin-bottom: 20px;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-highlight));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradientAnimation 3s infinite alternate;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: left top;
+    }
+    100% {
+        background-position: right bottom;
+    }
 }
 
 #productsFilter {
@@ -116,7 +130,11 @@ button:hover {
     flex: 0 0 100%;
     font-size: 1.4rem;
     margin-bottom: 20px;
-    color: var(--color-primary);
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-highlight));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradientAnimation 3s infinite alternate;
 }
 
 .product {
@@ -159,4 +177,48 @@ button:hover {
 .product h4 {
     font-size: 14px;
     color: #fb7185;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+footer h2 {
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-highlight));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradientAnimation 3s infinite alternate;
+    margin-bottom: 10px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.nomes {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.integrantes {
+    margin: 0;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.integrantes a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.integrantes a:hover {
+    color: var(--color-primary);
+    transform: scale(1.05);
+    text-shadow: 0 0 5px var(--color-primary-dark);
 }
